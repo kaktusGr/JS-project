@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // *-* Min-Max sum *-*
 
@@ -26,7 +26,7 @@ console.log(minMaxSum([6, 3, 7, 2, 4]));
 
 
 // *-* Bubble sort *-*
-
+/*
 //const sorted = bubble_sort(Array(50).fill(null).map(() => Math.floor(Math.random() * 1000) - 500));
 const array = [723, -524, 170, -322, 962, -618, -43, 902, -296, -569, 608, 722, 455, -59, 
 	-797, 486, 601, -534, 815, 321, 301, -607, -972, -438, -581, -381, 640, 664, 93, 622, 942, 838, 919, 
@@ -35,7 +35,7 @@ const array = [723, -524, 170, -322, 962, -618, -43, 902, -296, -569, 608, 722, 
 const arrayRight = array.slice();
 console.log('NotSorted array:');
 console.log(arrayRight);
-/*
+
 //sort to end
 function bubble_sort_to_end(array) {
   for (let k = 0; k < array.length; k++) { //отвечает за порядок сортировки, т.е. здесь прямой (по возрастанию)
@@ -93,17 +93,27 @@ console.log(array);
 
 
 // *-* Глупая сортировка *-*
+const array = [5, 2, 1, 3, 9, 0, 4, 6, 8, 7];
+const trueArray = array.slice();
+console.log(trueArray);
+console.log('');
+console.log('Stupid sort steps:');
+
 function stupid_sort(array) {
-	for (let i = 0; i < array.length; i++) {
+	let i = 0;
+	while (i < array.length - 1) {
 		if (array[i] > array[i + 1]) {
 			let result = array[i];
 			array[i] = array[i + 1];
 			array[i + 1] = result;
+			console.log(array);
+			i = 0;
 		} else {
 			i++;
 		}
-	} 
-	return array;
+	}
 }
+
 stupid_sort(array);
+console.log('Stupid sort result:');
 console.log(array);
