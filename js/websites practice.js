@@ -10,12 +10,12 @@ function minMaxSum(arr) {
 	
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i] > findMax) {
-		  findMax = arr[i];
+			findMax = arr[i];
 		} 
-	  if (arr[i] < findMin) {
-	    findMin = arr[i];
+		if (arr[i] < findMin) {
+			findMin = arr[i];
 		}
-	  mainSum += arr[i];
+		mainSum += arr[i];
 	}
 	
 	return `${mainSum - findMax} ${mainSum - findMin}`;
@@ -35,17 +35,17 @@ const array = [723, -524, 170, -322, 962, -618, -43, 902, -296, -569, 608, 722, 
 const arrayRight = array.slice();
 console.log('NotSorted array:');
 console.log(arrayRight);
-
+/*
 //sort to end
 function bubble_sort_to_end(array) {
   for (let k = 0; k < array.length; k++) { //отвечает за порядок сортировки, т.е. здесь прямой (по возрастанию)
     for (let i = 0; i < array.length - 1 - k; i++) { //сортировка в конец массива
-      if (array[i] > array[i + 1]) {
-        let result = array[i];
-        array[i] = array[i + 1];
-        array[i + 1] = result;
-      }
-    } 
+		if (array[i] > array[i + 1]) {
+			let result = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = result;
+		}
+	}
   }
  return array;
 }
@@ -58,11 +58,11 @@ console.log(array);
 function bubble_sort_to_begin(array) {
 	for (let k = array.length; k < 0; k++) {
 		for (let i = array.length - 1; i > 0; i--) { //сортировка в начало массива
-      if (array[i] < array[i - 1]) {
-        let result = array[i];
-        array[i] = array[i - 1];
-        array[i - 1] = result;
-      }
+		if (array[i] < array[i - 1]) {
+			let result = array[i];
+			array[i] = array[i - 1];
+			array[i - 1] = result;
+		}
     }
 	}
 	return array;
@@ -76,11 +76,11 @@ console.log(array);
 function bubble_sort_reverse_to_begin(array) {
 	for (let k = array.length; k > 0; k--) { //отвечает за порядок сортировки, т.е. здесь обратный (по убыванию)
 		for (let i = array.length - 1; i > 0; i--) {
-      if (array[i] > array[i - 1]) {
-        let result = array[i];
-        array[i] = array[i - 1];
-        array[i - 1] = result;
-      }
+		if (array[i] > array[i - 1]) {
+			let result = array[i];
+			array[i] = array[i - 1];
+			array[i - 1] = result;
+		}
     }
 	}
 	return array;
@@ -88,4 +88,22 @@ function bubble_sort_reverse_to_begin(array) {
 
 bubble_sort_reverse_to_begin(array);
 console.log('Reverse sorted array to begin:');
+console.log(array);
+*/
+
+
+// *-* Глупая сортировка *-*
+function stupid_sort(array) {
+	for (let i = 0; i < array.length; i++) {
+		if (array[i] > array[i + 1]) {
+			let result = array[i];
+			array[i] = array[i + 1];
+			array[i + 1] = result;
+		} else {
+			i++;
+		}
+	} 
+	return array;
+}
+stupid_sort(array);
 console.log(array);
