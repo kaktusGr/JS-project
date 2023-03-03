@@ -1,6 +1,5 @@
 "use strict";
 
-// *-* Bubble sort *-*
 /*
 //const sorted = bubble_sort(Array(50).fill(null).map(() => Math.floor(Math.random() * 1000) - 500));
 const array = [723, -524, 170, -322, 962, -618, -43, 902, -296, -569, 608, 722, 455, -59, 
@@ -10,7 +9,10 @@ const array = [723, -524, 170, -322, 962, -618, -43, 902, -296, -569, 608, 722, 
 const arrayRight = array.slice();
 console.log('NotSorted array:');
 console.log(arrayRight);
+*/
 
+// Bubble sort
+/*
 //sort to end
 function bubble_sort_to_end(array) {
   for (let k = 0; k < array.length; k++) { //отвечает за порядок сортировки, т.е. здесь прямой (по возрастанию)
@@ -67,11 +69,11 @@ console.log(array);
 */
 
 
-// *-* Глупая сортировка *-*
+// Stupid sort
 const array = [5, 2, 1, 3, 9, 0, 4, 6, 8, 7];
 const trueArray = array.slice();
 console.log(trueArray);
-console.log('');
+/*
 console.log('Stupid sort steps:');
 
 function stupid_sort(array) {
@@ -91,4 +93,33 @@ function stupid_sort(array) {
 
 stupid_sort(array);
 console.log('Stupid sort result:');
+console.log(array);
+*/
+
+// Shaker sort
+console.log('Shaker sort steps:');
+
+function shaker_sort(array) {
+	for (let k = 0; k < array.length; k++) { 
+		for (let i = 0; i < array.length - 1 - k; i++) { 
+			if (array[i] > array[i + 1]) {
+				let result = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = result;
+				console.log(array);
+			}
+		}
+		for (let i = array.length - 1 - k; i > 0; i--) { 
+			if (array[i] < array[i - 1]) {
+				let result = array[i];
+				array[i] = array[i - 1];
+				array[i - 1] = result;
+				console.log(array);
+			}
+		}
+	}
+	return array;
+}
+shaker_sort(array);
+console.log('Shaker sort result:');
 console.log(array);
