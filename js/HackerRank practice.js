@@ -29,8 +29,12 @@ function timeConversion(time) {
 	let lastTwoSymbols = time.slice(-2);
 	let firstTwoSymbols = time.slice(0, 2);
 
-	if (lastTwoSymbols === 'PM') {
+	if (lastTwoSymbols === 'PM' && firstTwoSymbols !== '12') {
 		firstTwoSymbols = +firstTwoSymbols + 12;
+		time = firstTwoSymbols + time.slice(2, -2);
+		return time;
+	} else if (firstTwoSymbols === '12' && lastTwoSymbols === "AM") {
+		firstTwoSymbols = '00';
 		time = firstTwoSymbols + time.slice(2, -2);
 		return time;
 	} else {
@@ -40,3 +44,5 @@ function timeConversion(time) {
 
 console.log(timeConversion('03:29:00PM'));
 console.log(timeConversion('11:04:55AM'));
+console.log(timeConversion('12:20:22AM'));
+console.log(timeConversion('12:41:13PM'));
