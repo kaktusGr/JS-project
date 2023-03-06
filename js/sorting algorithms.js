@@ -16,7 +16,7 @@ console.log(arrayRight);
 //sort to end
 function bubble_sort_to_end(array) {
   for (let k = 0; k < array.length; k++) { //отвечает за порядок сортировки, т.е. здесь прямой (по возрастанию)
-    for (let i = 0; i < array.length - 1 - k; i++) { //сортировка в конец массива
+	 for (let i = 0; i < array.length - 1 - k; i++) { //сортировка в конец массива
 		if (array[i] > array[i + 1]) {
 			let result = array[i];
 			array[i] = array[i + 1];
@@ -40,7 +40,7 @@ function bubble_sort_to_begin(array) {
 			array[i] = array[i - 1];
 			array[i - 1] = result;
 		}
-    }
+	 }
 	}
 	return array;
 }
@@ -58,7 +58,7 @@ function bubble_sort_reverse_to_begin(array) {
 			array[i] = array[i - 1];
 			array[i - 1] = result;
 		}
-    }
+	 }
 	}
 	return array;
 }
@@ -100,8 +100,8 @@ console.log(array);
 console.log('Shaker sort steps:');
 
 function shaker_sort(array) {
-	for (let k = 0; k < array.length; k++) { 
-		for (let i = 0; i < array.length - 1 - k; i++) { 
+	for (let k = 0; k < array.length; k++) {
+		for (let i = 0 + k; i < array.length - 1 - k; i++) {
 			if (array[i] > array[i + 1]) {
 				let result = array[i];
 				array[i] = array[i + 1];
@@ -109,7 +109,7 @@ function shaker_sort(array) {
 				console.log(array);
 			}
 		}
-		for (let i = array.length - 1 - k; i > 0; i--) { 
+		for (let i = array.length - 1 - k; i > 0 + k; i--) {
 			if (array[i] < array[i - 1]) {
 				let result = array[i];
 				array[i] = array[i - 1];
