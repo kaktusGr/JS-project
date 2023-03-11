@@ -97,29 +97,23 @@ console.log(array);
 */
 
 // Shaker sort
-console.log('Shaker sort steps:');
 
 function shaker_sort(array) {
 	for (let k = 0; k < array.length / 2; k++) {
 		for (let i = k; i < array.length - 1 - k; i++) {
 			if (array[i] > array[i + 1]) {
-				let result = array[i];
+				let buffer = array[i];
 				array[i] = array[i + 1];
-				array[i + 1] = result;
-				console.log(array);
+				array[i + 1] = buffer;
 			}
 		}
 		for (let i = array.length - 1 - k; i > k; i--) {
 			if (array[i] < array[i - 1]) {
-				let result = array[i];
+				let buffer = array[i];
 				array[i] = array[i - 1];
-				array[i - 1] = result;
-				console.log(array);
+				array[i - 1] = buffer;
 			}
 		}
 	}
 	return array;
 }
-shaker_sort(array);
-console.log('Shaker sort result:');
-console.log(array);
