@@ -16,7 +16,7 @@ console.log(arrayRight);
 //sort to end
 function bubble_sort_to_end(array) {
   for (let k = 0; k < array.length; k++) { //отвечает за порядок сортировки, т.е. здесь прямой (по возрастанию)
-	 for (let i = 0; i < array.length - 1 - k; i++) { //сортировка в конец массива
+	for (let i = 0; i < array.length - 1 - k; i++) { //сортировка в конец массива
 		if (array[i] > array[i + 1]) {
 			let result = array[i];
 			array[i] = array[i + 1];
@@ -115,5 +115,31 @@ function shaker_sort(array) {
 			}
 		}
 	}
+	return array;
+}
+
+// Even-odd sort
+
+function evenOddSort(array) {
+	let needNextStep;
+	do {
+		needNextStep = false;
+		for (let i = 0; i < array.length - 1; i += 2) {
+			if (array[i] > array[i + 1]) {
+				let buffer = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = buffer;
+				needNextStep = true;
+			}
+		}
+		for (let i = 1; i < array.length - 1; i += 2) {
+			if (array[i] > array[i + 1]) {
+				let buffer = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = buffer;
+				needNextStep = true;
+			}
+		}
+	} while (needNextStep);
 	return array;
 }
