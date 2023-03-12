@@ -1,89 +1,55 @@
 "use strict";
 
-/*
-//const sorted = bubble_sort(Array(50).fill(null).map(() => Math.floor(Math.random() * 1000) - 500));
-const array = [723, -524, 170, -322, 962, -618, -43, 902, -296, -569, 608, 722, 455, -59, 
-	-797, 486, 601, -534, 815, 321, 301, -607, -972, -438, -581, -381, 640, 664, 93, 622, 942, 838, 919, 
-	-844, 152, -945, -553, -705, 359, 823, -13, -298, 558, -266, 194, -696, -680, -620, -749, 545];
-
-const arrayRight = array.slice();
-console.log('NotSorted array:');
-console.log(arrayRight);
-*/
-
-// Bubble sort
-/*
-//sort to end
-function bubble_sort_to_end(array) {
-  for (let k = 0; k < array.length; k++) { //отвечает за порядок сортировки, т.е. здесь прямой (по возрастанию)
-	for (let i = 0; i < array.length - 1 - k; i++) { //сортировка в конец массива
-		if (array[i] > array[i + 1]) {
-			let result = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = result;
+function bubbleSortToEnd(array) {
+	const copyArray = array.slice();
+	for (let k = 0; k < copyArray.length; k++) {
+		for (let i = 0; i < copyArray.length - 1 - k; i++) {
+			if (copyArray[i] > copyArray[i + 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i + 1];
+				copyArray[i + 1] = buffer;
+			}
 		}
 	}
-  }
- return array;
+	return copyArray;
 }
 
-bubble_sort_to_end(array);
-console.log('Sorted array to end:');
-console.log(array);
-
-//sort to begin
-function bubble_sort_to_begin(array) {
-	for (let k = array.length; k < 0; k++) {
-		for (let i = array.length - 1; i > 0; i--) { //сортировка в начало массива
-		if (array[i] < array[i - 1]) {
-			let result = array[i];
-			array[i] = array[i - 1];
-			array[i - 1] = result;
+function bubbleSortToBegin(array) {
+	const copyArray = array.slice();
+	for (let k = copyArray.length; k < 0; k++) {
+		for (let i = copyArray.length - 1; i > 0; i--) {
+			if (copyArray[i] < copyArray[i - 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i - 1];
+				copyArray[i - 1] = buffer;
+			}
 		}
-	 }
 	}
-	return array;
+	return copyArray;
 }
 
-bubble_sort_to_begin(array);
-console.log('Sorted array to begin:');
-console.log(array);
-
-//sort to begin - reverse
-function bubble_sort_reverse_to_begin(array) {
-	for (let k = array.length; k > 0; k--) { //отвечает за порядок сортировки, т.е. здесь обратный (по убыванию)
-		for (let i = array.length - 1; i > 0; i--) {
-		if (array[i] > array[i - 1]) {
-			let result = array[i];
-			array[i] = array[i - 1];
-			array[i - 1] = result;
+function bubbleSortReverseToBegin(array) {
+	const copyArray = array.slice();
+	for (let k = copyArray.length; k > 0; k--) {
+		for (let i = copyArray.length - 1; i > 0; i--) {
+			if (copyArray[i] > copyArray[i - 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i - 1];
+				copyArray[i - 1] = buffer;
+			}
 		}
-	 }
 	}
-	return array;
+	return copyArray;
 }
 
-bubble_sort_reverse_to_begin(array);
-console.log('Reverse sorted array to begin:');
-console.log(array);
-*/
-
-
-// Stupid sort
-const array = [5, 2, 1, 3, 9, 0, 4, 6, 8, 7];
-const trueArray = array.slice();
-console.log(trueArray);
-/*
-console.log('Stupid sort steps:');
-
-function stupid_sort(array) {
+function stupidSort(array) {
+	const copyArray = array.slice();
 	let i = 0;
-	while (i < array.length - 1) {
-		if (array[i] > array[i + 1]) {
-			let result = array[i];
-			array[i] = array[i + 1];
-			array[i + 1] = result;
-			console.log(array);
+	while (i < copyArray.length - 1) {
+		if (copyArray[i] > copyArray[i + 1]) {
+			let buffer = copyArray[i];
+			copyArray[i] = copyArray[i + 1];
+			copyArray[i + 1] = buffer;
 			i = 0;
 		} else {
 			i++;
@@ -91,55 +57,48 @@ function stupid_sort(array) {
 	}
 }
 
-stupid_sort(array);
-console.log('Stupid sort result:');
-console.log(array);
-*/
-
-// Shaker sort
-
-function shaker_sort(array) {
-	for (let k = 0; k < array.length / 2; k++) {
-		for (let i = k; i < array.length - 1 - k; i++) {
-			if (array[i] > array[i + 1]) {
-				let buffer = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = buffer;
+function shakerSort(array) {
+	const copyArray = array.slice();
+	for (let k = 0; k < copyArray.length / 2; k++) {
+		for (let i = k; i < copyArray.length - 1 - k; i++) {
+			if (copyArray[i] > copyArray[i + 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i + 1];
+				copyArray[i + 1] = buffer;
 			}
 		}
-		for (let i = array.length - 1 - k; i > k; i--) {
-			if (array[i] < array[i - 1]) {
-				let buffer = array[i];
-				array[i] = array[i - 1];
-				array[i - 1] = buffer;
+		for (let i = copyArray.length - 1 - k; i > k; i--) {
+			if (copyArray[i] < copyArray[i - 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i - 1];
+				copyArray[i - 1] = buffer;
 			}
 		}
 	}
-	return array;
+	return copyArray;
 }
 
-// Even-odd sort
-
 function evenOddSort(array) {
+	const copyArray = array.slice();
 	let needNextStep;
 	do {
 		needNextStep = false;
-		for (let i = 0; i < array.length - 1; i += 2) {
-			if (array[i] > array[i + 1]) {
-				let buffer = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = buffer;
+		for (let i = 0; i < copyArray.length - 1; i += 2) {
+			if (copyArray[i] > copyArray[i + 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i + 1];
+				copyArray[i + 1] = buffer;
 				needNextStep = true;
 			}
 		}
-		for (let i = 1; i < array.length - 1; i += 2) {
-			if (array[i] > array[i + 1]) {
-				let buffer = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = buffer;
+		for (let i = 1; i < copyArray.length - 1; i += 2) {
+			if (copyArray[i] > copyArray[i + 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i + 1];
+				copyArray[i + 1] = buffer;
 				needNextStep = true;
 			}
 		}
 	} while (needNextStep);
-	return array;
+	return copyArray;
 }
