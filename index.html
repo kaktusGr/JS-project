@@ -2,7 +2,7 @@
 <html lang="ru">
 
 <head>
-	<title>Italian food</title>
+	<title>Learning JavaScript</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<link rel="stylesheet" href="css/style.css">
 	<meta charset="UTF-8">
@@ -13,24 +13,69 @@
 		<div class="content">
 			<div class="main">
 				<div class='container'>
-					<h1>Катя изучает Java Script</h1>
-					<img src="img/kaktus.jpg" alt="">
+					<h1>Kate is learning JavaScript</h1>
+					<div class="main__row">
+						<div class="main__rowleft">
+							<div class="main__image"><img src="img/katya.jpg" alt=""></div>
+						</div>
+						<div class="main__rowright">
+							<div class="main__examples">
+								<div class="main__couple">
+									<button>bubble sort</button>
+									<img src="img/bubble sort.gif" alt="">
+								</div>
+								<div class="main__couple">
+									<button>stupid sort</button>
+									<img src="img/stupid sort.gif" alt="">
+								</div>
+								<div class="main__couple">
+									<button>shaker sort</button>
+									<img src="img/shaker sort.gif" alt="">
+								</div>
+								<div class="main__couple">
+									<button>even-odd sort</button>
+									<img src="img/even-odd sort.gif" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="main__codes">
+						<div class="main__bubbleSort">
+							<pre>
+function bubbleSortToEnd(array) {
+	const copyArray = array.slice();
+	for (let k = 0; k < copyArray.length; k++) {
+		for (let i = 0; i < copyArray.length - 1 - k; i++) {
+			if (copyArray[i] > copyArray[i + 1]) {
+				let buffer = copyArray[i];
+				copyArray[i] = copyArray[i + 1];
+				copyArray[i + 1] = buffer;
+			}
+		}
+	}
+	return copyArray;
+}
+</pre>
+						</div>
+					</div> -->
 				</div>
 			</div>
-			<div class="lesson">
+
+			<div class="info">
 				<div class='container'>
-					<div class="text" data-say-hi="yes">Привет!</div>
-					<div class="list">
+					<div class="info__text">Sources:</div>
+					<div class="info__list">
 						<ul>
-							<li>Корчи</li>
-							<li>Йончи</li>
+							<li><a href="https://fls.guru/">Фрилансер по жизни</a></li>
+							<li><a href="https://learn.javascript.ru/">Современный учебник JavaScript</a></li>
+							<li><a href="http://htmlbook.ru/">htmlbook</a></li>
+							<li><a href="https://ru.hexlet.io/my">hexlet</a></li>
+							<li><a href="https://github.com/">GitHub</a></li>
 						</ul>
 					</div>
-					<div class="like"></div>
-					<div class="subscribe"></div>
-					<div class="like subscribe"></div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<script src='js/practice book JS.js'></script>
