@@ -58,4 +58,15 @@ let birthday = prompt('Write your birthday (DD.MM.YYYY)', '');
 if (birthday !== '') {
 	alert(myAge(birthday));
 }
+
+//Выводим все простые числа в диапазоне num
+let num = 30;
+
+stepNum:
+for (let i = 2; i <= num; i++) {
+	for (let j = 2; j < i; j++) {
+		if (i % j == 0) continue stepNum;
+	}
+	console.log(i);
+}
 */
