@@ -50,3 +50,24 @@ function breakingRecords(scores) {
 	}
 	return [countMax, countMin];
 }
+
+function plusMinus(arr) {
+	let numPositive = 0;
+	let numNegative = 0;
+	let numZero = 0;
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] > 0) {
+			numPositive++;
+		} else if (arr[i] < 0) {
+			numNegative++;
+		} else {
+			numZero++;
+		}
+	}
+	let positive = numPositive / arr.length;
+	let negative = numNegative / arr.length;
+	let zero = numZero / arr.length;
+	console.log(positive.toFixed(6), '\n', negative.toFixed(6), '\n', zero.toFixed(6));
+}
+
+plusMinus([-4, 3, -9, 0, 4, 1]);
