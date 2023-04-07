@@ -58,16 +58,20 @@ function plusMinus(arr) {
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i] > 0) {
 			numPositive++;
-		} else if (arr[i] < 0) {
+		}
+
+		if (arr[i] < 0) {
 			numNegative++;
-		} else {
+		}
+
+		if (arr[i] == 0) {
 			numZero++;
 		}
 	}
 	let positive = numPositive / arr.length;
 	let negative = numNegative / arr.length;
 	let zero = numZero / arr.length;
-	console.log(positive.toFixed(6), '\n', negative.toFixed(6), '\n', zero.toFixed(6));
+	console.log(positive.toFixed(6));
+	console.log(negative.toFixed(6));
+	console.log(zero.toFixed(6));
 }
-
-plusMinus([-4, 3, -9, 0, 4, 1]);
