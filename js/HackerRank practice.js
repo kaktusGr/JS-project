@@ -33,3 +33,20 @@ function timeConversion(time) {
 		return time = time.slice(0, -2);
 	}
 }
+
+function breakingRecords(scores) {
+	let countMin = 0;
+	let countMax = 0;
+	let min = scores[0];
+	let max = scores[0];
+	for (let i = 1; i < scores.length; i++) {
+		if (scores[i] > max) {
+			max = scores[i];
+			countMax++;
+		} else if (scores[i] < min) {
+			min = scores[i];
+			countMin++;
+		}
+	}
+	return [countMax, countMin];
+}
