@@ -72,3 +72,56 @@ function simpleNum(num) {
 		console.log(i);
 	}
 }
+
+function toNumber(str) {
+	str = str.trim();
+	if (str === '') {
+		return Number.NaN;
+	}
+	return +str;
+}
+
+function sumInput() {
+	let array = [];
+	let num;
+	let sum = 0;
+
+	do {
+		let str = prompt("Write a number:", '');
+		num = toNumber(str);
+		array.push(num);
+	} while (!Number.isNaN(num));
+	array.pop();
+
+	for (let n of array) {
+		sum += n;
+	}
+	alert(sum);
+}
+
+function getMaxSubSum(arr) {
+	let maxSum = 0;
+
+	for (let i = 0; i < arr.length; i++) {
+		let sumFixedStart = 0;
+		for (let j = i; j < arr.length; j++) {
+			sumFixedStart += arr[j];
+			maxSum = Math.max(maxSum, sumFixedStart);
+		}
+	}
+
+	return maxSum;
+}
+
+function getMaxSubSumShort(arr) {
+	let maxSum = 0;
+	let partialSum = 0;
+
+	for (let item of arr) {
+		partialSum += item;
+		maxSum = Math.max(maxSum, partialSum);
+		if (partialSum < 0) partialSum = 0;
+	}
+
+	return maxSum;
+}
