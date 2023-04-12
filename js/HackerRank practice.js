@@ -75,3 +75,49 @@ function plusMinus(arr) {
 	console.log(negative.toFixed(6));
 	console.log(zero.toFixed(6));
 }
+
+function processData(input) {
+	let firstFourSymbols = input.slice(0, 4);
+	let nameInput = input.slice(4);
+	let splitCombineInput;
+	let resultInput;
+
+	if (firstFourSymbols[0] == 'S') {
+		splitCombineInput = nameInput
+			.split('')
+			.map((letter) => letter == letter.toLowerCase() ? letter : ' ' + letter.toLowerCase())
+			.join('');
+	}
+
+	if (firstFourSymbols[0] == 'C') {
+		splitCombineInput = nameInput
+			.split(' ')
+			.map((word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1))
+			.join('');
+	}
+
+	if (firstFourSymbols[2] == 'M' && splitCombineInput.slice(-2) == '()') {
+		resultInput = splitCombineInput.slice(0, -2);
+	} else {
+		resultInput = splitCombineInput + '()';
+	}
+
+	if (firstFourSymbols[2] == 'C' && splitCombineInput[0] == ' ') {
+		resultInput = splitCombineInput.trim();
+	} else if (firstFourSymbols[2] == 'C' && splitCombineInput[0] == splitCombineInput[0].toLowerCase()) {
+		resultInput = splitCombineInput[0].toUpperCase() + splitCombineInput.slice(1);
+	}
+
+	if (firstFourSymbols[2] == 'V') {
+		resultInput = splitCombineInput;
+	}
+
+	return resultInput;
+}
+
+console.log(processData('S;M;plasticCup()')); //plastic cup
+console.log(processData('C;V;mobile phone')); //mobilePhone
+console.log(processData('C;C;coffee machine')); //CoffeeMachine
+console.log(processData('S;C;LargeSoftwareBook')); //large software book
+console.log(processData('C;M;white sheet of paper')); //whiteSheetOfPaper()
+console.log(processData('S;V;pictureFrame')); //picture frame
