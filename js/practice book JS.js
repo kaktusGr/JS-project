@@ -227,3 +227,45 @@ function compareStringsByLength(string1, string2) {
 	return 0;
 }
 */
+
+function shuffle(array) {
+	for (let i = array.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		[array[i], array[j]] = [array[j], array[i]];
+	}
+}
+
+function unique(arr) {
+	let uniqueStr = [];
+	let result = arr.forEach((item) => {
+		if (!uniqueStr.includes(item)) {
+			uniqueStr.push(item);
+		}
+	});
+	return uniqueStr;
+}
+
+function Calculator() {
+	this.calculate = function (str) {
+		let symbol = str.split(" ");
+		return this[symbol[1]](+symbol[0], +symbol[2]);
+	}
+
+	this["+"] = function (a, b) {
+		return a + b;
+	}
+
+	this["-"] = function (a, b) {
+		return a - b;
+	}
+
+	this.addMethod = function (key, func) {
+		this[key] = func;
+	}
+}
+
+let calc = new Calculator;
+
+// calc.addMethod("*", (a, b) => a * b);
+// console.log(calc.calculate("2 * 3"));
+// console.log(calc.calculate("3 + 7"));
