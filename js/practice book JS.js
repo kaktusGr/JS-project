@@ -275,10 +275,10 @@ let calc = new Calculator;
 // 	{id: 'ann', name: "Ann Smith", age: 24},
 // 	{id: 'pete', name: "Pete Peterson", age: 31},
 //  ];
- 
- function groupById(array) {
+
+function groupById(array) {
 	return array.reduce((obj, value) => {
-		 obj[value.id] = value;
-		 return obj;
+		obj[value.id] = value;
+		return obj;
 	}, {})
- }
+}
