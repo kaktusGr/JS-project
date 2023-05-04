@@ -75,3 +75,16 @@ function plusMinus(arr) {
 	console.log(negative.toFixed(6));
 	console.log(zero.toFixed(6));
 }
+
+function matchingStrings(strings, queries) {
+	let arrResult = [];
+	for (let i = 0; i < queries.length; i++) {
+		arrResult.push(0);
+		for (let j = 0; j < strings.length; j++) {
+			if (strings[j] === queries[i]) {
+				arrResult[i] += 1;
+			}
+		}
+	}
+	return arrResult;
+}
