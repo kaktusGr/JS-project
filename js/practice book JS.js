@@ -225,3 +225,26 @@ function sumSalaries(salaries) {
 	}
 	return salary;
 }
+
+function formatDate(date) {
+	let now = new Date();
+	
+	let diff = now - date;
+	
+	if (diff < 1000) {
+		 return 'прямо сейчас';
+	} else if (diff >= 1000 && diff < 59 * 1000) {
+		 return `${Math.round(diff / 1000)} сек. назад`;
+	} else if (diff > 59 * 1000 && diff < 3600 * 1000) {
+		 return `${Math.round(diff / 60000)} мин. назад`;
+	} else if (diff >= 3600 * 1000) {
+		 let newDate = new Date(date);
+		 let year = newDate.getFullYear();
+		 let month = newDate.getMonth() + 1;
+		 if (month < 10) {
+			  month = '0' + month;
+		 }
+		 
+		 return `${newDate.getDate()}.${month}.${year} ${newDate.getHours()}:${newDate.getMinutes()}`;
+	}
+}
