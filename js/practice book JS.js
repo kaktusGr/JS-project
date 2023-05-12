@@ -205,3 +205,23 @@ function groupById(array) {
 		return obj;
 	}, {})
 }
+
+function aclean(arr) {
+	let map = new Map();
+
+	for (let item of arr) {
+		let arrLetters = Array.from(item.toLowerCase());
+		arrLetters.sort();
+		let str = arrLetters.join('');
+		map.set(str, item);
+	}
+	return Array.from(map.values());
+}
+
+function sumSalaries(salaries) {
+	let salary = 0;
+	for (let value of Object.values(salaries)) {
+		salary += value;
+	}
+	return salary;
+}
