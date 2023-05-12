@@ -227,24 +227,30 @@ function sumSalaries(salaries) {
 }
 
 function formatDate(date) {
-	let now = new Date();
-	
-	let diff = now - date;
-	
+	let diff = new Date() - date;
+
 	if (diff < 1000) {
-		 return 'прямо сейчас';
-	} else if (diff >= 1000 && diff < 59 * 1000) {
-		 return `${Math.round(diff / 1000)} сек. назад`;
-	} else if (diff > 59 * 1000 && diff < 3600 * 1000) {
-		 return `${Math.round(diff / 60000)} мин. назад`;
-	} else if (diff >= 3600 * 1000) {
-		 let newDate = new Date(date);
-		 let year = newDate.getFullYear();
-		 let month = newDate.getMonth() + 1;
-		 if (month < 10) {
-			  month = '0' + month;
-		 }
-		 
-		 return `${newDate.getDate()}.${month}.${year} ${newDate.getHours()}:${newDate.getMinutes()}`;
+		return 'прямо сейчас';
 	}
+
+	let sec = Math.floor(diff / 1000);
+	if (sec < 60) {
+		return `${sec} сек. назад`;
+	}
+
+	let min = Math.floor(diff / 60000);
+	if (min < 60) {
+		return `${min} мин. назад`;
+	}
+
+	let newDate = new Date(date);
+	newDate = [
+		'0' + newDate.getDate(),
+		'0' + (newDate.getMonth() + 1),
+		'' + newDate.getFullYear(),
+		'0' + newDate.getHours(),
+		'0' + newDate.getMinutes()
+	].map(component => component.slice(-2));
+
+	return newDate.slice(0, 3).join('.') + ' ' + newDate.slice(3).join(':');
 }
