@@ -205,3 +205,52 @@ function groupById(array) {
 		return obj;
 	}, {})
 }
+
+function aclean(arr) {
+	let map = new Map();
+
+	for (let item of arr) {
+		let arrLetters = Array.from(item.toLowerCase());
+		arrLetters.sort();
+		let str = arrLetters.join('');
+		map.set(str, item);
+	}
+	return Array.from(map.values());
+}
+
+function sumSalaries(salaries) {
+	let salary = 0;
+	for (let value of Object.values(salaries)) {
+		salary += value;
+	}
+	return salary;
+}
+
+function formatDate(date) {
+	let diff = new Date() - date;
+
+	if (diff < 1000) {
+		return 'прямо сейчас';
+	}
+
+	let sec = Math.floor(diff / 1000);
+	if (sec < 60) {
+		return `${sec} сек. назад`;
+	}
+
+	let min = Math.floor(diff / 60000);
+	if (min < 60) {
+		return `${min} мин. назад`;
+	}
+
+	let newDate = new Date(date);
+	newDate = [
+		'0' + newDate.getDate(),
+		'0' + (newDate.getMonth() + 1),
+		'' + newDate.getFullYear(),
+		'0' + newDate.getHours(),
+		'0' + newDate.getMinutes()
+	].map(component => component.slice(-2));
+
+	return newDate.slice(0, 3).join('.') + ' ' + newDate.slice(3).join(':');
+}
