@@ -1,5 +1,5 @@
 "use strict"
-
+/*
 function promptNameJS() {
 	let nameJS = prompt('Какое официальное название JavaScript?', '');
 	if (nameJS === 'ECMAScript') {
@@ -254,3 +254,246 @@ function formatDate(date) {
 
 	return newDate.slice(0, 3).join('.') + ' ' + newDate.slice(3).join(':');
 }
+
+function sumToFor(n) {
+	let sum = 0;
+	for (let i = 1; i <= n; i++) {
+		sum += i;
+	}
+	return sum;
+}
+
+function sumToRecurse(n) {
+	if (n == 1) {
+		return n;
+	} else {
+		return n + sumToRecurse(n - 1);
+	}
+}
+
+function sumToF(n) {
+	return n * (n + 1) / 2;
+}
+
+function fib(n) {
+	let last = 1;
+	let next = 1;
+	for (let i = 3; i <= n; i++) {
+		cash = last + next;
+		last = next;
+		next = cash;
+	}
+	return next;
+}
+
+let list = {
+	value: 1,
+	next: {
+		value: 2,
+		next: {
+			value: 3,
+			next: {
+				value: 4,
+				next: null
+			}
+		}
+	}
+};
+
+function printList(list) {
+	console.log(list.value);
+	if (list.next != null) {
+		printList(list.next);
+	}
+}
+
+function printList(list) {
+	let change = list;
+	do {
+		console.log(change.value);
+		change = change.next;
+	} while (change != null);
+}
+
+printList(list);
+
+function sum(a) {
+
+	let currentSum = a;
+
+	function f(b) {
+		currentSum += b;
+		return f;
+	}
+
+	f.valueOf = function () {
+		return currentSum;
+	};
+
+	return f;
+}
+
+function printNumbers(from, to) {
+	let current = from;
+
+	let timerInterval = setInterval(() => {
+		alert(current);
+		if (current == to) {
+			clearInterval(timerInterval);
+		}
+		current++;
+	}, 1000);
+
+	let timerTimeout = setTimeout(function t() {
+		if (current <= to) {
+			alert(current);
+			current++;
+		}
+		timerTimeout = setTimeout(t, 1000);
+	}, 1000);
+}
+
+function work(a, b) {
+	console.log(a + b);
+}
+
+function spy(func) {
+	function f(...args) {
+		f.calls.push(args);
+		return func.apply(this, args);
+	};
+	f.calls = [];
+	return f;
+}
+
+work = spy(work);
+
+work(1, 2);
+work(4, 5);
+
+for (let args of work.calls) {
+	console.log('call:' + args.join()); // "call:1,2", "call:4,5"
+}
+
+function f(x) {
+	alert(x);
+}
+
+function delay(f, ms) {
+	return function (...args) {
+		setTimeout(() => f.apply(this, args), ms);
+	}
+}
+
+let f3000 = delay(f, 3000);
+let f5500 = delay(f, 5500);
+
+function debounce(f, ms) {
+	let previousStart = null;
+	return function (...args) {
+		if (previousStart === null || Date.now() - previousStart >= ms) {
+			previousStart = Date.now();
+			return f.apply(this, args);
+		}
+	}
+}
+
+let f = debounce(console.log, 1000);
+
+function debounce(f, ms) {
+	let canCall = true;
+	return function (...args) {
+		if (canCall) {
+			canCall = false;
+			setTimeout(() => canCall = true, ms);
+			return f.apply(this, args);
+		}
+	}
+}
+
+let f = debounce(console.log, 1000);
+
+f(1); // выполняется немедленно
+f(2); // проигнорирован
+setTimeout(() => f(3), 100); // проигнорирован (прошло только 100 мс)
+setTimeout(() => f(4), 1100); // выполняется
+setTimeout(() => f(5), 1500); // проигнорирован
+*/
+
+// function f(a) {
+// 	console.log(a)
+// }
+
+// function throttle(f, ms) {
+// 	let canCall = true;
+// 	let param = undefined;
+// 	let savedThis = undefined;
+// 	//setTimeout(() => f.apply(savedThis, param), ms); // должно вызываться в таймере, который проставляет canCall
+
+// 	return function (...args) {
+// 		if (canCall) {
+// 			canCall = false;
+// 			setTimeout(() => {
+// 				if (savedThis !== undefined) {
+// 					f.apply(savedThis, param);
+// 					param = undefined;
+// 					savedThis = undefined;
+// 				}
+// 				// проверяем, что сохраненный this - не undefined.
+// 				// Если так, то вызываем функцию, обнуляем сохраненные параметры и сохраненный this.
+// 				canCall = true;
+// 			}, ms);
+// 			return f.apply(this, args);
+// 		} else {
+// 			param = args;
+// 			savedThis = this;
+// 		}
+// 	}
+// }
+
+// let f1000 = throttle(f, 1000);
+
+// f1000(1); // показывает 1
+// f1000(2); // (ограничение, 1000 мс ещё нет)
+// f1000(3); // (ограничение, 1000 мс ещё нет)
+
+class Clock {
+
+	constructor({ template }) {
+		this.template = template;
+	}
+
+	render() {
+		let date = new Date();
+
+		let hours = date.getHours();
+		if (hours < 10) hours = '0' + hours;
+
+		let mins = date.getMinutes();
+		if (mins < 10) mins = '0' + mins;
+
+		let secs = date.getSeconds();
+		if (secs < 10) secs = '0' + secs;
+
+		let output = this.template
+			.replace('h', hours)
+			.replace('m', mins)
+			.replace('s', secs);
+
+		console.log(output);
+	}
+
+	stop() {
+		clearInterval(this.timer);
+	};
+
+	start() {
+		this.render();
+		this.timer = setInterval(() => this.render(), 1000);
+	};
+
+}
+
+let clock = new Clock({ template: 'h:m:s' });
+clock.start();
+setTimeout(() => clock.stop(), 5000);
