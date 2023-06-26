@@ -1,5 +1,5 @@
 "use strict"
-/*
+
 function promptNameJS() {
 	let nameJS = prompt('Какое официальное название JavaScript?', '');
 	if (nameJS === 'ECMAScript') {
@@ -418,44 +418,43 @@ f(2); // проигнорирован
 setTimeout(() => f(3), 100); // проигнорирован (прошло только 100 мс)
 setTimeout(() => f(4), 1100); // выполняется
 setTimeout(() => f(5), 1500); // проигнорирован
-*/
 
-// function f(a) {
-// 	console.log(a)
-// }
+function f(a) {
+	console.log(a)
+}
 
-// function throttle(f, ms) {
-// 	let canCall = true;
-// 	let param = undefined;
-// 	let savedThis = undefined;
-// 	//setTimeout(() => f.apply(savedThis, param), ms); // должно вызываться в таймере, который проставляет canCall
+function throttle(f, ms) {
+	let canCall = true;
+	let param = undefined;
+	let savedThis = undefined;
+	//setTimeout(() => f.apply(savedThis, param), ms); // должно вызываться в таймере, который проставляет canCall
 
-// 	return function (...args) {
-// 		if (canCall) {
-// 			canCall = false;
-// 			setTimeout(() => {
-// 				if (savedThis !== undefined) {
-// 					f.apply(savedThis, param);
-// 					param = undefined;
-// 					savedThis = undefined;
-// 				}
-// 				// проверяем, что сохраненный this - не undefined.
-// 				// Если так, то вызываем функцию, обнуляем сохраненные параметры и сохраненный this.
-// 				canCall = true;
-// 			}, ms);
-// 			return f.apply(this, args);
-// 		} else {
-// 			param = args;
-// 			savedThis = this;
-// 		}
-// 	}
-// }
+	return function (...args) {
+		if (canCall) {
+			canCall = false;
+			setTimeout(() => {
+				if (savedThis !== undefined) {
+					f.apply(savedThis, param);
+					param = undefined;
+					savedThis = undefined;
+				}
+				// проверяем, что сохраненный this - не undefined.
+				// Если так, то вызываем функцию, обнуляем сохраненные параметры и сохраненный this.
+				canCall = true;
+			}, ms);
+			return f.apply(this, args);
+		} else {
+			param = args;
+			savedThis = this;
+		}
+	}
+}
 
-// let f1000 = throttle(f, 1000);
+let f1000 = throttle(f, 1000);
 
-// f1000(1); // показывает 1
-// f1000(2); // (ограничение, 1000 мс ещё нет)
-// f1000(3); // (ограничение, 1000 мс ещё нет)
+f1000(1); // показывает 1
+f1000(2); // (ограничение, 1000 мс ещё нет)
+f1000(3); // (ограничение, 1000 мс ещё нет)
 
 class Clock {
 
